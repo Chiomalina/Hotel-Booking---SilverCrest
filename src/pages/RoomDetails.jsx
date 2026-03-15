@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { assets, facilityIcons, roomsDummyData } from "../assets/assets";
+import {
+  assets,
+  facilityIcons,
+  roomCommonData,
+  roomsDummyData,
+} from "../assets/assets";
 import StarRating from "../components/StarRating";
 
 const RoomDetails = () => {
@@ -146,6 +151,54 @@ const RoomDetails = () => {
             Check Availability
           </button>
         </form>
+
+        {/** Common Speifications */}
+        <div className="mt-25 space-y-4">
+          {roomCommonData.map((spec, index) => (
+            <div key={index} className="flex items-start gap-2">
+              <img
+                src={spec.icon}
+                alt={`${spec.title}-icon`}
+                className="w-6.5"
+              />
+              <div>
+                <p className="text-base">{spec.title}</p>
+                <p className="text-gray-500">{spec.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="max-w-3xl border-y border-gray-300 my-15 py-10 text-gray-500">
+          <p>
+            Guests are allocated ground-floor apartments subject to
+            availability. Enjoy a comfortable two-bedroom apartment offering a
+            true city living experience. The displayed price is based on two
+            guests. Please select the number of guests in the guest field to
+            view the correct pricing for larger groups.
+          </p>
+        </div>
+
+        {/** Hosted by */}
+        <div className="flex flex-col items-start gap-4">
+          <div className="flex gap-4">
+            <img
+              src={room.hotel.owner.image}
+              alt="Host"
+              className="h-14 w-14 md:h-18 md:w-18 rounded-full"
+            />
+            <div>
+              <p className="text-lg md:text-xl">Hosted by {room.hotel.name}</p>
+              <div className="flex items-center mt-1">
+                <StarRating />
+                <p className="ml-2">200+ reviews</p>
+              </div>
+            </div>
+          </div>
+          <button className="px-6 py-2.5 mt-4 rounded text-white bg-primary hover:bg-primary-dull transition-all cursor-pointer">
+            Contact Now
+          </button>
+        </div>
       </div>
     )
   );
