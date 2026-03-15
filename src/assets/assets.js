@@ -38,11 +38,9 @@ import listIcon from "./listIcon.svg";
 import uploadArea from "./uploadArea.svg";
 import totalBookingIcon from "./totalBookingIcon.svg";
 import totalRevenueIcon from "./totalRevenueIcon.svg";
-import silverCrestLogo from "./silverCrestLogo.png";
 
 export const assets = {
   logo,
-  silverCrestLogo,
   searchIcon,
   userIcon,
   calenderIcon,
