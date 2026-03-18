@@ -18,12 +18,12 @@ import { useAppContext } from "./context/AppContext";
 const App = () => {
   //Hide Navbar if pathname is owner
   const isOwnerPath = useLocation().pathname.includes("owner");
-  const {showHotelReg} = useAppContext();
+  const { showHotelReg } = useAppContext();
   return (
     <div>
       <Toaster />
       {!isOwnerPath && <Navbar />}
-      {false && <HotelReg />}
+      {showHotelReg && <HotelReg />}
       <div className="min-h-[70vh]">
         <Routes>
           <Route path="/" element={<Home />} />
