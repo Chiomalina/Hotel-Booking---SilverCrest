@@ -74,7 +74,7 @@ export const assets = {
   totalRevenueIcon,
 };
 
-export const cities = ["Dubai", "Singapore", "New York", "London"];
+export const cities = ["Enugu","Dubai", "Singapore", "New York", "London"];
 
 // Exclusive Offers Dummy Data
 export const exclusiveOffers = [
