@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 
 const ListRoom = () => {
   const [rooms, setRooms] = useState([]);
-  const { axios, getToken, user } = useAppContext();
+  const { axios, getToken, user, currency } = useAppContext();
 
   // Fetch Rooms of the Hotel Owner
   const fetchRooms = async () => {
@@ -22,6 +22,27 @@ const ListRoom = () => {
       }
     } catch (error) {
       toast.error(error.message);
+    }
+  };
+
+  // Toggle Availability of the Room
+  const toggleAvailability = async (roomId) => {
+    try {
+      const { data } = await axios.post(
+        "/api/rooms/toggle-availability",
+        { roomId },
+        { headers: { Authorization: `Bearer ${await getToken()}` } },
+      );
+
+      if (data.success) {
+        toast.success(data.message);
+
+        fetchRooms();
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || error.message);
     }
   };
 
@@ -57,7 +78,7 @@ const ListRoom = () => {
           </thead>
           <tbody className="text-sm">
             {rooms.map((item, index) => (
-              <tr key={index}>
+              <tr key={item._id}>
                 <td className="py-3 px-4 text-gray-700 border-t border-gray-300">
                   {item.roomType}
                 </td>
@@ -65,7 +86,7 @@ const ListRoom = () => {
                   {item.amenities.join(", ")}
                 </td>
                 <td className="py-3 px-4 text-gray-700 border-t border-gray-300">
-                  {item.pricePerNight}
+                  {currency} {item.pricePerNight}
                 </td>
                 <td className="py-3 px-4 border-t border-gray-300 text-sm text-red-500 text-center">
                   <label
@@ -73,6 +94,7 @@ const ListRoom = () => {
                     className="relative inline-flex items-center cursor-pointer text-grey-900 gap-3"
                   >
                     <input
+                      onChange={() => toggleAvailability(item._id)}
                       type="checkbox"
                       className="sr-only peer"
                       checked={item.isAvailable}
