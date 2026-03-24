@@ -1,4 +1,3 @@
-import logo from "./logo.png";
 import searchIcon from "./searchIcon.svg";
 import userIcon from "./userIcon.svg";
 import calenderIcon from "./calenderIcon.svg";
@@ -74,7 +73,7 @@ export const assets = {
   totalRevenueIcon,
 };
 
-export const cities = ["Enugu","Dubai", "Singapore", "New York", "London"];
+export const cities = ["Enugu", "Dubai", "Singapore", "New York", "London"];
 
 // Exclusive Offers Dummy Data
 export const exclusiveOffers = [
