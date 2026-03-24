@@ -7,11 +7,14 @@ const Footer = () => {
     <div className="bg-[#F6F9FC] text-gray-500/80 pt-8 px-6 md:px-16 lg:px-24 xl:px-32">
       <div className="flex flex-wrap justify-between gap-12 md:gap-6">
         <div className="max-w-80 ">
-          <img
-            src={assets.logo}
-            alt="logo"
-            className="mb-4 h-8 md:h-9 invert"
-          />
+          <p className="inline-flex flex-col justify-center rounded-2xl border border-cyan-400/20 bg-gradient-to-br from-zinc-950 via-zinc-900 to-black px-6 py-3 text-center shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-cyan-500/10 cursor-pointer">
+            <span className="text-2xl font-semibold tracking-[0.18em] uppercase text-white">
+              Silver<span className="text-cyan-400">Crest</span>
+            </span>
+            <span className="mt-1 text-[11px] font-medium tracking-[0.35em] uppercase text-zinc-400">
+              Hotel Booking
+            </span>
+          </p>
           <p className="text-sm">
             Discover the world's most extraordinary places to stay, from
             boutique hotels to luxury villas and private islands.

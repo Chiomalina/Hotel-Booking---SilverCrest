@@ -11,7 +11,6 @@ import Layout from "./pages/HotelOwner/Layout";
 import Dashboard from "./pages/HotelOwner/Dashboard";
 import ListRoom from "./pages/HotelOwner/ListRoom";
 import AddRoom from "./pages/HotelOwner/AddRoom";
-import PoultryLandingPage from "./pages/HotelOwner/PoultryLandingPage";
 import { Toaster } from "react-hot-toast";
 import { useAppContext } from "./context/AppContext";
 
@@ -34,7 +33,6 @@ const App = () => {
             <Route index element={<Dashboard />} />
             <Route path="add-room" element={<AddRoom />} />
             <Route path="list-room" element={<ListRoom />} />
-            <Route path="poultry" element={<PoultryLandingPage />} />
           </Route>
         </Routes>
       </div>
