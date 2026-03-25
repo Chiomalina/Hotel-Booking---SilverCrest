@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import { useAppContext } from "../context/AppContext";
 import { useParams } from "react-router-dom";
 
@@ -9,7 +9,7 @@ const Loader = () => {
   useEffect(() => {
     if (nextUrl) {
       setTimeout(() => {
-        navigate(`${nextUrl}`);
+        navigate(`/${nextUrl}`);
       }, 8000);
     }
   }, [nextUrl]);
