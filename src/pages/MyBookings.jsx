@@ -41,7 +41,6 @@ const MyBookings = () => {
       }
     } catch (error) {
       toast.error("Payment error:", error.message);
-      console.error("Payment error:", error.message);
     }
   };
 
