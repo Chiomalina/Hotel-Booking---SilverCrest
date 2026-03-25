@@ -5,9 +5,6 @@ import { useAppContext } from "../context/AppContext";
 import toast from "react-hot-toast";
 import { loadStripe } from "@stripe/stripe-js";
 
-
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
-
 const MyBookings = () => {
   const { axios, getToken, user } = useAppContext();
   const [bookings, setBookings] = useState([]);
@@ -31,7 +28,6 @@ const MyBookings = () => {
   // Function for making stripe payment
   const handlePayment = async (bookingId) => {
     try {
-      const { stripe } = await stripePromise
       const { data } = await axios.post(
         "/api/bookings/stripe-payment",
         { bookingId },
@@ -39,19 +35,13 @@ const MyBookings = () => {
       );
 
       if (data.success) {
-        const { error } = await stripe.redirectToCheckout({
-        sessionId: data.sessionId,
-      });
-      
-        //window.location.href = data.url
-        if (error) {
-        toast.error(error.message);
-        }
-      }else {
-        toast.error(data.message)
+        window.location.href = data.url;
+      } else {
+        toast.error(data.message);
       }
     } catch (error) {
-      toast.error(error.message)
+      toast.error("Payment error:", error.message);
+      console.error("Payment error:", error.message);
     }
   };
 
@@ -136,7 +126,10 @@ const MyBookings = () => {
                 </p>
               </div>
               {!booking.isPaid && (
-                <button onClick={() => handlePayment(booking._id)} className="px-4 py-1.5 mt-4 text-xs border border-gray-400 rounded-full hover:bg-gray-50 transition-all cursor-pointer">
+                <button
+                  onClick={() => handlePayment(booking._id)}
+                  className="px-4 py-1.5 mt-4 text-xs border border-gray-400 rounded-full hover:bg-gray-50 transition-all cursor-pointer"
+                >
                   Pay Now
                 </button>
               )}
